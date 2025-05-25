@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Journaling | Thee Glam Hub</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+
+<style>
+body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      color: #000000;
+      background: linear-gradient(145deg, #f5f5ff, #e6f0ff);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .gradientBgCanvasHero {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, #ffd9f9 0%, transparent 60%), 
+                  radial-gradient(circle at 70% 70%, #d0f0ff 0%, transparent 60%);
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .journal-box {
+      width: 90%;
+      height: 200px;
+      padding: 1rem;
+      margin: 1rem auto;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid #e4e4e7;
+      background-color: #fff5fa;
+      font-size: 1rem;
+      font-family: "Inter", sans-serif;
+      resize: vertical;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .journal-intro {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      color: #c98dae;
+    }
+
+    .home-link {
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color:#007aff;
+    }
+
+    .prompt-box {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    #newPromptBtn {
+      background-color: #bbcdff;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .save-btn {
+      display: block;
+      margin: 0 auto;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: #f7d5fd;
+      border: none;
+      border-radius: 8px;
+      color: #000000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .save-msg {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #10b981;
+    }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      margin-left: 1rem;
+      cursor: pointer;
+      color: #dc2626;
+    }
+
+    .container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+   .journal-archive,
+   .moodboard {
+    margin-top: 2rem;
+}
+
+     .journal-shadow {
+    background-color: #fff7fb;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0e2e9;
+  }
+
+  </style>
+
+<!-- journallll -->
+
+  <body class="journaling-body">
+  <div class="gradientBgCanvasHero"></div>
+
+
+  <header class="wishlist-header">
+    <a href="index.html" class="home-link">← back to home</a>
+    <h1 class="wishlist-title">📝 journaling</h1>
+  </header>
+  <main 
+     class="wishlist-main">
+    <p class="journal-intro">reflect, release, recharge 🌷</p>
+
+    <!-- Prompt Area -->
+    <div class="prompt-box">
+      <h3>today's prompt💭</h3>
+      <p id="journalPrompt">what are u most grateful for today?</p>
+      <button id="newPromptBtn">new prompt ↻</button>
+    </div>
+
+    <!-- Journal Input -->
+    <textarea class="journal-box" id="journalInput" placeholder="type your thoughts here💭"></textarea>
+    <button class="save-btn" id="saveJournalBtn">💾save entry</button>
+    <p id="saveMsg" class="save-msg"></p>
+
+    <!-- Archive -->
+    <section class="journal-archive journal-shadow">
+      <h2>journal history 📚</h2>
+      <ul id="journalList" class="wishlist-items"></ul>
+    </section>
+
+    <!-- Moodboard -->
+    <section class="moodboard">
+      <h3>moodboard ✨</h3>
+      <div class="mood-items">
+        <img src="data:image/jpeg;base64,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" alt="soft inspo" />
+        <blockquote>i'm my own self supply 🕊</blockquote>
+
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1p5BWSr9us4WLbiHoE0lQkpspsdZ3vPIMhjD1NNeBQbXCIBXt0rirdPTJ-W5rbzRDifg&usqp=CAU" />
+        <blockquote>Healing isn't linear. Be soft with yourself 🌸</blockquote>
+      </div>
+    </section>
+   </div>
+  </main>
+
+
+  <script>
+  const prompts = [
+    "what made you smile today, even just a little?",
+    "what would you tell your younger self right now?",
+    "write a love letter to yourself 💌",
+    "what’s something you’re proud of recently?",
+    "what does life look like for you?",
+    "throw ur anger, hate, stress, anything you're feeling here.."
+  ];
+
+  const promptText = document.getElementById("journalPrompt");
+  const newPromptBtn = document.getElementById("newPromptBtn");
+  const journalInput = document.getElementById("journalInput");
+  const saveBtn = document.getElementById("saveJournalBtn");
+  const journalList = document.getElementById("journalList");
+  const saveMsg = document.getElementById("saveMsg");
+
+  // New prompt btn
+  newPromptBtn.addEventListener("click", () => {
+    const random = prompts[Math.floor(Math.random() * prompts.length)];
+    promptText.textContent = random;
+  });
+
+  // Load saved entries
+  window.addEventListener("DOMContentLoaded", () => {
+    const entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+    entries.forEach(entry => addEntryToUI(entry));
+  });
+
+  // Save entry
+  saveBtn.addEventListener("click", () => {
+    const text = journalInput.value.trim();
+    if (text !== "") {
+      const date = new Date().toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      });
+
+      const entry = { text, date };
+      addEntryToUI(entry);
+      saveToLocalStorage(entry);
+      journalInput.value = "";
+      saveMsg.textContent = "✨ saved to your archives";
+      setTimeout(() => (saveMsg.textContent = ""), 2000);
+    }
+  });
+
+  function addEntryToUI(entry) {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span>${entry.text}</span><br/>
+      <small style="color:#777;font-size:0.8rem;">🕰️ added on ${entry.date}</small>
+      <button class="delete-btn" title="Delete">🗑️</button>
+    `;
+    journalList.appendChild(li);
+
+    li.querySelector(".delete-btn").addEventListener("click", () => {
+      li.remove();
+      deleteFromLocalStorage(entry);
+    });
+  }
+
+  function saveToLocalStorage(entry) {
+    let entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+    entries.push(entry);
+    localStorage.setItem("journalEntries", JSON.stringify(entries));
+  }
+
+  function deleteFromLocalStorage(entryToDelete) {
+    let entries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+    entries = entries.filter(entry => entry.text !== entryToDelete.text || entry.date !== entryToDelete.date);
+    localStorage.setItem("journalEntries", JSON.stringify(entries));
+  }
+</script>
+
+</body>
+</html>

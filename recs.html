@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Makeup Recs | Thee Glam Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+      body {
+
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(145deg, #ffd9f9 , #d0f0ff);
+  padding: 2rem;
+  color: #2b2b2b;
+  min-height: 100vh;
+}
+
+
+    .home-link {
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color:#007aff;
+    }
+
+    .gradientBgCanvasHero {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, #ffd9f9 0%, transparent 60%), 
+                  radial-gradient(circle at 70% 70%, #d0f0ff 0%, transparent 60%);
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+     .reset-btn {
+      background-color: #c8e4ff;
+      border: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .reset-btn:hover {
+      background-color: #ffcfe9;
+    }
+
+    .recs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      border-radius: 12px;
+      padding: 1rem;
+      background-color: #fdeefc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transition: translateY (-4px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+      max-height: 250px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      background-color: #f7f7f7;
+    }
+
+    .product-labels {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: "Inter", sans-serif;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .label {
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .vegan { background-color: #ccf7d7; color: #1e6b3d; }
+    .ayurvedic { background-color: #ffeccc; color: #9c6500; }
+    .brown-friendly { background-color: #ffe2e2; color: #a42d2d; }
+    .oily-bestie { background-color: #dff2ff; color: #0077a6; }
+
+    .delete-btn {
+  display: block;
+  margin-top: 1rem;
+  background: #ffe2ef;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #62c0ff;
+  width: 100%;
+  text-align: center;
+}
+
+    .add-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+      color: #888;
+      font-size: 2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .add-card:hover {
+      background-color: #f8daf3;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      backdrop-filter: blur(12px);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-family: "Inter", sans-serif;
+      font-size: 0.9rem;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+      background: #fffdfd;
+      margin-top: 0.6rem;
+      margin-bottom: 1rem;
+      box-sizing: border-box;
+      color: #4b4b4b;
+    }
+
+    .modal-content label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-family: "Inter", sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .checkboxes label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.8rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      background-color: #ffcde3;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <a href="index.html" class="home-link">← back to home</a>
+    <h1>💄 makeup recs</h1>
+    <p>your fav products, with personal notes 💕</p>
+    <button class="reset-btn" id="resetBtn">reset to defaults 🧼</button>
+  </div>
+
+  <section class="recs-grid" id="productGrid">
+    <!-- Product cards will be rendered here -->
+    <div class="product-card add-card" id="addNewCard">＋</div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">×</span>
+      <h3>add new product</h3>
+
+      <label>product name</label>
+      <input type="text" id="productName" placeholder="e.g. Rare Beauty blush"/>
+
+      <label>image url</label>
+      <input type="text" id="productImage" placeholder="paste image link here"/>
+
+      <label>note</label>
+      <textarea id="productNote" placeholder="why u love this ✨"></textarea>
+
+      <div class="checkboxes">
+        <label><input type="checkbox" id="isVegan"/>vegan🌱</label>
+        <label><input type="checkbox" id="isAyurvedic"/> ayurvedic🌿</label>
+        <label><input type="checkbox" id="isBrown"/> brown-skin friendly🤎</label>
+        <label><input type="checkbox" id="isOily"/> oily-skin bestie🧴</label>
+      </div>
+
+      <button class="submit-btn" id="submitProduct">add ✨</button>
+    </div>
+
+  <script>
+  const addCard = document.getElementById("addNewCard");
+  const modal = document.getElementById("productModal");
+  const closeModal = document.getElementById("closeModal");
+  const submitProduct = document.getElementById("submitProduct");
+  const productGrid = document.getElementById("productGrid");
+
+  let products = JSON.parse(localStorage.getItem("makeupRecs")) || [];
+  let editIndex = null;
+
+  const defaultProducts = [
+    {
+      name: "Rare Beauty Soft Pinch Blush",
+      image: "rareb.jpeg",
+      note: "melts into skin + perfect for brown tones 💗",
+      vegan: true,
+      ayurvedic: false,
+      brown: true,
+      oily: true,
+      
+    },
+    {
+      name: "Essence Cosmetics The Brown Edition Eyeshadow Palette",
+      image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTl6VmHwjSkxkpuu6HS8NyvdGN_ka_pGdwMyYykOkS9lSIGIW7KHfMiqKf5P8SNhFNzh47yersMDflH6V5Ee6vqLZnFee6QyCAYtkSYU4VNRRlUYAPK2exZwhuQvJ0EW_fi7RfRqalifIc&usqp=CAc",
+      note: "pigmented on brown/dark skin, and a substitute for Makeup by Mario's master Mattes palette",
+      vegan: true,
+      ayurvedic: false,
+      brown: true,
+      oily: false,
+    
+    },
+    {
+      name: "Tarte Cosmetics Tartelette Tubing Mascara",
+      image: "data:image/webp;base64,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",
+      note: "lengthening, and voluminizing",
+      vegan: true,
+      ayurvedic:false,
+      brown: true,
+      oily: true,
+      
+    },
+    {
+      name: "Sephora Moisturizing Lip Balm in the shade Cherry",
+      image: "data:image/webp;base64,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",
+      note: "super pigmented for brown/dark girlies, + moisturizing + smells like cherry, and tastes sweet?!",
+      vegan: true,
+      ayurvedic:false,
+      brown: true,
+      oily: false,
+      
+
+    },
+  ];
+
+  if (!products || products.length === 0) {
+    products = defaultProducts;
+    localStorage.setItem("makeupRecs", JSON.stringify(products));
+  }
+
+  function renderProducts() {
+    productGrid.innerHTML = "";
+
+    products.forEach((prod, index) => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${prod.image}" alt="${prod.name}" />
+        <h4>${prod.name}</h4>
+        <p>${prod.note}</p>
+        <div class="product-labels">
+          ${prod.vegan ? '<span class="label vegan">vegan🌱</span>' : ""}
+          ${prod.ayurvedic ? '<span class="label ayurvedic">ayurvedic🌿</span>' : ""}
+          ${prod.brown ? '<span class="label brown-friendly">brown-skin friendly🤎</span>' : ""}
+          ${prod.oily ? '<span class="label oily-bestie">oily-skin bestie🧴</span>' : ""}
+        </div>
+        <button class="delete-btn" data-index="${index}">🗑️</button>
+        <button class="delete-btn" style="margin-top: 0.5rem;" data-edit="${index}">✏️</button>
+      `;
+      productGrid.appendChild(card);
+    });
+
+    productGrid.appendChild(addCard);
+
+    // delete
+    document.querySelectorAll(".delete-btn[data-index]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const index = e.target.getAttribute("data-index");
+        products.splice(index, 1);
+        localStorage.setItem("makeupRecs", JSON.stringify(products));
+        renderProducts();
+      });
+    });
+
+    // edit
+    document.querySelectorAll(".delete-btn[data-edit]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        editIndex = parseInt(e.target.getAttribute("data-edit"));
+        const prod = products[editIndex];
+        document.getElementById("productName").value = prod.name;
+        document.getElementById("productImage").value = prod.image;
+        document.getElementById("productNote").value = prod.note;
+        document.getElementById("isVegan").checked = prod.vegan;
+        document.getElementById("isAyurvedic").checked = prod.ayurvedic;
+        document.getElementById("isBrown").checked = prod.brown;
+        document.getElementById("isOily").checked = prod.oily;
+        modal.style.display = "flex";
+      });
+    });
+  }
+
+  renderProducts();
+
+  addCard.addEventListener("click", () => {
+    editIndex = null;
+    modal.style.display = "flex";
+    document.getElementById("productName").value = "";
+    document.getElementById("productImage").value = "";
+    document.getElementById("productNote").value = "";
+    document.querySelectorAll(".checkboxes input").forEach(cb => cb.checked = false);
+  });
+
+  closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  submitProduct.addEventListener("click", () => {
+    const newProduct = {
+      name: document.getElementById("productName").value,
+      image: document.getElementById("productImage").value,
+      note: document.getElementById("productNote").value,
+      vegan: document.getElementById("isVegan").checked,
+      ayurvedic: document.getElementById("isAyurvedic").checked,
+      brown: document.getElementById("isBrown").checked,
+      oily: document.getElementById("isOily").checked,
+    };
+
+    if (newProduct.name && newProduct.image) {
+      if (editIndex !== null) {
+        products[editIndex] = newProduct;
+      } else {
+        products.push(newProduct);
+      }
+
+      localStorage.setItem("makeupRecs", JSON.stringify(products));
+      renderProducts();
+      modal.style.display = "none";
+
+      document.getElementById("productName").value = "";
+      document.getElementById("productImage").value = "";
+      document.getElementById("productNote").value = "";
+      document.querySelectorAll(".checkboxes input").forEach(cb => cb.checked = false);
+    }
+  });
+
+  // optional: add a reset button somewhere in your HTML to call this
+  // <button id="resetBtn" class="reset-btn">reset to defaults</button>
+  document.getElementById("resetBtn")?.addEventListener("click", () => {
+    if (confirm("Reset all recs to your default faves? 🥺")) {
+      products = [...defaultProducts];
+      localStorage.setItem("makeupRecs", JSON.stringify(products));
+      renderProducts();
+    }
+
+    const name = document.getElementById("productName").value.trim();
+    const notes = document.getElementById("productNotes").value.trim();
+    const link = document.getElementById("productLink").value.trim();
+    const productData = {
+      name,
+      notes,
+      link,
+  // other tags or labels if you have them
+};
+
+  });
+
+  
+</script>
+
+</body>
+</html>

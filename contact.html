@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Thee Glam Hub</title>
+  <style>
+
+    body {
+      font-family: "Inter", sans-serif;
+      padding: 2rem;
+      background: #fff7fb;
+      color: #333;
+      background: linear-gradient(145deg, #f5f5ff, #e6f0ff);
+
+    }
+
+    .gradientBgCanvasHero {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, #ffd9f9 0%, transparent 60%), 
+                  radial-gradient(circle at 70% 70%, #d0f0ff 0%, transparent 60%);
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #ffcde3;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    
+    .home-link {
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color:#007aff;
+    }
+
+  </style>
+</head>
+
+<body>
+    <div class="gradientBgCanvasHero"></div>
+
+    <a href="index.html" class="home-link">← back to home</a>
+
+  <h1>get in touch 💌</h1>
+  <p>we'd love to hear your feebacks about this hub too! 
+    if you’ve got questions, collaboration ideas fill this out:</p>
+  
+  <form>
+    <label>your name</label>
+    <input type="text" required>
+
+    <label>your email</label>
+    <input type="email" required>
+
+    <label>your message</label>
+    <textarea rows="5" required></textarea>
+
+    <button type="submit">send 💌</button>
+  </form>
+
+  <p style="margin-top: 2rem; font-size: 0.85rem;">or DM me on <a href="https://instagram.com/glamupwith.k" target="_blank">Instagram</a></p>
+</body>
+</html>

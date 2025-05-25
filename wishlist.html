@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlist | Thee Glam Hub</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      color: #000000;
+      background: linear-gradient(145deg, #f5f5ff, #e6f0ff);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .gradientBgCanvasHero {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, #ffd9f9 0%, transparent 60%), 
+                  radial-gradient(circle at 70% 70%, #d0f0ff 0%, transparent 60%);
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .wishlist-header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #007aff;
+    }
+
+    .wishlist-title {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .wishlist-main {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0 1rem 2rem;
+    }
+
+    .wishlist-items {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+
+    .wishlist-items li {
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      margin-bottom: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      color: #ff3b30;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .wishlist-input {
+      display: flex;
+      gap: 10px;
+      padding-top: 1rem;
+    }
+
+    .wishlist-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .wishlist-input button {
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      background-color: #007aff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="wishlist-body">
+  <div class="gradientBgCanvasHero"></div>
+
+  <header class="wishlist-header">
+    <a href="index.html" class="home-link">← back to home</a>
+    <h1 class="wishlist-title">📁 wishlist</h1>
+  </header>
+
+  <main class="wishlist-main">
+    <!-- Wishlist display -->
+    <ul id="wishlistItems" class="wishlist-items">
+      <!-- Items will render here -->
+    </ul>
+
+    <!-- Input area -->
+    <div class="wishlist-input">
+      <input type="text" id="wishlistItemInput" placeholder="add here..." />
+      <button id="addWishlistBtn">＋</button>
+    </div>
+  </main>
+
+  <script>
+    const input = document.getElementById("wishlistItemInput");
+    const addBtn = document.getElementById("addWishlistBtn");
+    const list = document.getElementById("wishlistItems");
+
+    const defaultItems = [
+      "✨ rare beauty Soft Pinch in “Joy”",
+      "✨ fenty gloss bomb in “Hot Chocolit”",
+      "✨ charlotte tilbury flawless filter (Tan shades)",
+      "✨ maybelline fit me concealer (Caramel/Bronze)"
+    ];
+
+    // Load saved wishlist or set defaults
+    window.addEventListener("DOMContentLoaded", () => {
+      const saved = JSON.parse(localStorage.getItem("wishlist"));
+      const items = saved && saved.length ? saved : defaultItems;
+      items.forEach(item => addItemToUI(item));
+    });
+
+    // Add item
+    addBtn.addEventListener("click", () => {
+      const text = input.value.trim();
+      if (text !== "") {
+        addItemToUI(text);
+        saveToLocalStorage(text);
+        input.value = "";
+      }
+    });
+
+    // Press Enter to add
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") addBtn.click();
+    });
+
+    function addItemToUI(text) {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>${text}</span>
+        <button class="delete-btn" title="Delete">🗑️</button>
+      `;
+      list.appendChild(li);
+
+      li.querySelector(".delete-btn").addEventListener("click", () => {
+        li.remove();
+        deleteFromLocalStorage(text);
+      });
+    }
+
+    function saveToLocalStorage(text) {
+      let items = JSON.parse(localStorage.getItem("wishlist")) || [];
+      items.push(text);
+      localStorage.setItem("wishlist", JSON.stringify(items));
+    }
+
+    function deleteFromLocalStorage(text) {
+      let items = JSON.parse(localStorage.getItem("wishlist")) || [];
+      const index = items.indexOf(text);
+      if (index > -1) {
+        items.splice(index, 1);
+        localStorage.setItem("wishlist", JSON.stringify(items));
+      }
+    }
+  </script>
+</body>
+</html>

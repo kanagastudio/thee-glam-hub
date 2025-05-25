@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Makeup Guides | Thee Glam Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(145deg, #f5f5ff, #e6f0ff);
+      color: #000;
+      min-height: 100vh;
+      position: relative;
+    }
+    .gradientBgCanvasHero {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, #ffd9f9 0%, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #d0f0ff 0%, transparent 60%);
+      z-index: -1;
+      opacity: 0.5;
+    }
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+    header {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .home-link {
+      text-decoration: none;
+      color: #007aff;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-weight: 600;
+      font-size: 2rem;
+      margin: 0;
+      text-transform: lowercase;
+    }
+    p.intro {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #c98dae;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    section.guide-section {
+      background: #fff5fa;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 2rem;
+    }
+    section.guide-section h2 {
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    ul.guide-list {
+      list-style-type: disc;
+      padding-left: 1.3rem;
+      line-height: 1.5;
+      color: #5a3e4c;
+      font-size: 1rem;
+      margin: 0;
+    }
+    details {
+      background: #ffe6f0;
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(255, 182, 203, 0.4);
+    }
+    details summary {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #ad6284;
+      outline: none;
+      user-select: none;
+    }
+    details[open] {
+      background: #ffcee4;
+    }
+    .visual-placeholder {
+      margin-top: 1rem;
+      border: 2px dashed #d4a4bb;
+      border-radius: 10px;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4a4bb;
+      font-style: italic;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .video-section iframe {
+      width: 100%;
+      height: 230px;
+      border-radius: 12px;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 12px rgba(215, 150, 180, 0.25);
+    }
+
+    .user-ideas-section,
+    .user-idea-history {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: #fffafc;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f3dce8;
+      box-align: center;
+    }
+
+    .user-ideas-section textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      resize: vertical;
+      margin-top: 1rem;
+      box-sizing: border-box;
+    }
+
+    .save-btn, #saveIdeaBtn {
+      margin-top: 0.5rem;
+      background-color: #fbe3ff;
+      border: none;
+      border-radius: 8px;
+      color: #000000;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+    }
+
+    .save-msg {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #10b981;
+    }
+
+    .wishlist-items li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #f0d5e3;
+      padding: 0.6rem 0.9rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      color: #4c3c44;
+    }
+
+    .wishlist-items button.delete-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="gradientBgCanvasHero"></div>
+  <div class="container">
+    <header>
+      <a href="index.html" class="home-link">← back to home</a>
+      <h1>📖 makeup guide 101</h1>
+    </header>
+
+    <p class="intro">your cozy brown-girl friendly glam guide corner ✨</p>
+
+    <section class="guide-section" id="beginner-steps">
+      <h2>📌 beginner steps</h2>
+      <ul class="guide-list">
+        <li>start with clean skin before applying makeup </li>
+        <li>ALWAYSSSS moisturize your face</li>
+        <li>skin prep well & use a damp beauty sponge/fingers to blend your base for a flawless finish</li>
+      </ul>
+      <details>
+        <summary>more beginner tips</summary>
+        <ul class="guide-list" style="margin-top: 0.6rem;">
+          <li>moisturize your face lightly before applying anything on your face</li>
+          <li>use a lipliner if your lip shade doesn't match the lip gloss/stick/etc.</li>
+          <li>use natural light when doing makeup for best color match</li>
+          <li>use a lip balm to moisturize your lips before applying a matte lipstick/lip</li>
+        </ul>
+      </details>
+      <div class="visual-placeholder">🎨 visuals & demo pics coming soon</div>
+    </section>
+
+    <section class="guide-section" id="skincare-prep">
+      <h2>🌞 skincare prep</h2>
+      <ul class="guide-list">
+        <li>cleanse🧼 — pick a gentle cleanser for your skin type</li>
+        <li>tone🍃 — helps balance and prep your skin</li>
+        <li>hydrate💦 — lightweight moisturizer works best under makeup</li>
+      </ul>
+      <details>
+        <summary>why skincare prep matters</summary>
+        <p style="margin-top: 0.6rem; color: #73334a;">
+          proper prep creates a smooth canvas, helping your makeup last longer and look fresh all day.
+          It also avoids skin from breaking out, and maintains the skin health!
+        </p>
+      </details>
+      <div class="visual-placeholder">📸 skincare routine pics coming soon</div>
+    </section>
+
+    <section class="guide-section" id="brown-skin-tips">
+      <h2>🧡 brown-skin tips</h2>
+      <ul class="guide-list">
+        <li>Choose warm undertones but avoid anything that looks too orange</li>
+        <li>Use highlighter shades that add warmth, avoid greyish contour tones</li>
+        <li>Be mindful of SPF flashback in photos — test before buying!</li>
+      </ul>
+      <details>
+        <summary>pro tip</summary>
+        <p style="margin-top: 0.6rem; color: #a7426e;">
+          warm golds and bronzes can beautifully enhance brown skin tones. Try layering products for a natural glow.
+        </p>
+      </details>
+      <div class="visual-placeholder">💄 brown beauty inspo coming soon</div>
+    </section>
+
+    <section class="guide-section video-section" id="yt-tutorials">
+      <h2>🎥 fave brown girl makeup tutorials</h2>
+      <ul class="guide-list">
+      <li><a href="https://youtu.be/_ODqgcmiZVc?si=pPQmf-nIHRk817No" target="_blank">✨makeup tutorial for brown skin</a></li>
+      <li><a href="https://youtu.be/r1VMQ8KY5Io?si=23SyQOc0m3DyM2w8" target="_blank">💖filter-like soft glam tutorial</a></li>
+      <li><a href="https://youtu.be/tMCCiJ5T8zU?si=vvDzst2ysm-J9EnB" target="_blank">🌞everyday brown skin makeup</a></li>
+      </ul>
+
+    </section>
+
+    <!-- personal makeup ideas section -->
+    <section class="guide-section user-ideas-section" id="user-ideas">
+      <h2>📝 your personal makeup ideas</h2>
+      <textarea id="userIdeaInput" placeholder="drop your fav tips or hacks here, personally for yourself..."></textarea>
+      <button id="saveIdeaBtn">💾save idea</button>
+      <p id="ideaSaveMsg" class="save-msg"></p>
+    </section>
+
+    <!-- idea history display -->
+    <section class="user-idea-history guide-shadow">
+      <h3>📝 your makeup idea history</h3>
+      <ul id="userIdeaList" class="wishlist-items"></ul>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userIdeaInput = document.getElementById("userIdeaInput");
+      const saveUserIdeaBtn = document.getElementById("saveIdeaBtn");
+      const userIdeaList = document.getElementById("userIdeaList");
+      const saveUserIdeaMsg = document.getElementById("ideaSaveMsg");
+
+      const savedIdeas = JSON.parse(localStorage.getItem("makeupUserIdeas")) || [];
+      savedIdeas.forEach(addIdeaToUI);
+
+      saveUserIdeaBtn.addEventListener("click", function () {
+        const ideaText = userIdeaInput.value.trim();
+        if (ideaText !== "") {
+          addIdeaToUI(ideaText);
+          saveToLocalStorage(ideaText);
+          userIdeaInput.value = "";
+          saveUserIdeaMsg.textContent = "✨ saved!";
+          setTimeout(() => (saveUserIdeaMsg.textContent = ""), 1500);
+        }
+      });
+
+      function addIdeaToUI(ideaText) {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span>${ideaText}</span>
+          <button class="delete-btn">🗑️</button>
+        `;
+        userIdeaList.appendChild(li);
+
+        li.querySelector(".delete-btn").addEventListener("click", function () {
+          li.remove();
+          deleteFromLocalStorage(ideaText);
+        });
+      }
+
+      function saveToLocalStorage(ideaText) {
+        const ideas = JSON.parse(localStorage.getItem("makeupUserIdeas")) || [];
+        ideas.push(ideaText);
+        localStorage.setItem("makeupUserIdeas", JSON.stringify(ideas));
+      }
+
+      function deleteFromLocalStorage(ideaText) {
+        let ideas = JSON.parse(localStorage.getItem("makeupUserIdeas")) || [];
+        ideas = ideas.filter(i => i !== ideaText);
+        localStorage.setItem("makeupUserIdeas", JSON.stringify(ideas));
+      }
+    });
+  </script>
+</body>
+</html>
