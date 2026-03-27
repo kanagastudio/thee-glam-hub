@@ -46,18 +46,6 @@ body {
   color: #7cc9fc;
 }
 
-.hamburger {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-/* 📱 MOBILE VERSION */
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-
   
   .hero-section {
     position: relative;
